@@ -15,7 +15,7 @@ public:
 
 	Photo(int nr_tags, int id, char type) {
 		this->nr_tags = nr_tags;
-		tags.resize(nr_tags);
+		//tags.resize(nr_tags);
 		this->id = id;
 		this->type = type;
 	}
@@ -30,19 +30,20 @@ public:
 		cout << id << " " << nr_tags << " " << type << " [";
 		for (int i = 0; i < nr_tags; ++i) 
 		{
-			cout << tags[i] << " ";
+			cout << tags[i];
+			if (i != nr_tags-1) {
+				cout << " ";
+			}
 		}
 		cout << "]\n";
 	}
-}
+};
 
-
-
-std::vector<Photo>* parse_input(string filename) {
+vector<Photo> parse_input(string filename) {
 	int N, M;
 	char type;
 	string current_tag;
-	vector<Photo>* input;
+	vector<Photo> input;
 	
 	ifstream in(filename);
 	
@@ -53,8 +54,10 @@ std::vector<Photo>* parse_input(string filename) {
 		Photo current_photo(M, i, type);
 		for (int j = 0; j < M; ++j) {
 			in >> current_tag;
+			cout << current_tag;
 			current_photo.add_tag(current_tag);
 		}
+		cout << endl;
 		input.push_back(current_photo);
 	}
 
