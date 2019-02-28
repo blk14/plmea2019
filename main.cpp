@@ -72,3 +72,4 @@ int main() {
 		photos[i].print();
 	}
 }
+
